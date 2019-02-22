@@ -1,0 +1,43 @@
+
+LINUX				stammsie's tips for using the linux os
+
+CHECK				ctrl + D / ctrl + C
+CHECK				grep options
+CHECK				$LD_LIBRARY_PATH
+CHECK				which
+CHECK				hard link / soft link
+CHECK				info
+CHECK				LIBGL_DEBUG=verbose (jureca)
+
+grep tail			retrieves an indicated number of lines from the end of a file
+global shortcuts		settings => configure desktop
+process lives after terminal	nohup <process> => ????? CHECK !!!!!
+go to last directory		cd -
+usr directory			UNIX special routines, not user :):):)
+account				stammsen@zam1335
+compare files			diff -Naur
+shell options			echo $-
+better prompt string		export PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\
+       				[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+				(without line break, only for overview)
+process to background		bg
+process to foreground		fg
+path variable			in .bashrc; spot for programs to search for executable files
+processes running		ps aux
+build a pipe			|
+search word in files		grep
+				e.g.: ps aux | grep vncserver
+list of equal processes 	<processname> -list
+check out version		--version
+verbose output			-v, -vv, -vvv
+help function			--help
+stop process			kill or
+     				<progname> -kill :14 (with number of prog part process)
+show end of file		tail -n<num> <filename>
+show file content		cat <filename>
+terminal window, rename 	right mouse click
+kill process	 		kill <processID>
+users in the home environment	who
+
+
+
