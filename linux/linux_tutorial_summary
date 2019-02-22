@@ -1,0 +1,435 @@
+ 
+INTRODUCTION		taken from "Ryan's tutorials"
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 1		THE COMMAND LINE
+
+command line		also known as terminal, in our case running bash
+			a text based interface to the system
+
+command prompt		asks you to enter commands
+
+Ctrl + Alt + t		open a terminal
+
+shell			part of the operating system that defines how the terminal will behave after running a command
+
+bash			Bourne again shell
+			it can be seen as a program that provides the command line interface/the terminal
+
+echo			command used to display messages
+
+echo $SHELL		display the current shell
+
+up and down arrows	traverse the command history
+
+left and right arrows	move the cursor inside the chosen command
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 2		BASIC NAVIGATION
+
+pwd			print working directory
+
+ls [options] [location]	list all files in the current or a specified location
+
+ls -l			long listing
+				- file or directory
+				- permissions
+				- number of blocks
+				- owner of the file or directory
+				- group the file or directory belongs to
+				- file size
+				- modification time
+				- name
+
+paths			absolute	/home/andrestammsen/...	in relation to the root directory
+			relative	./Documents/...		in relation to the current location
+
+~			home directory
+
+$HOME			home directory
+
+.			current directory
+
+..			parent directory
+
+cd [location]		change directory
+
+cd			change to home directory
+
+tab			tab completion for files and directories
+			once	completes the name if there's only one possibility
+			twice	offers a list of possibilities
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 3		MORE ABOUT FILES
+
+everything is a file	text files, directories, keyboard (read only for system), monitor (write only for system)
+
+extensionless system	extensions are ignored by the system
+			instead, the system looks inside the file to determine what type of file it is
+
+file [path]		find out what type of file a particular file is
+
+path			is actually a means to get to a particular location in the system, and that location is a file
+
+case sensitivity	unlike windows; file and File are different; also for command line options
+
+spaces in names		quotes			'name with space' or
+			escape character	name\ with\ space
+
+escape character	escape (nullifies) the special meaning of the next character
+			her it would men separation of the words instead of just being a blank character
+
+tab completion blanks	can be done before encountering the space in the name; all next spaces are ignored automatically
+
+hidden files		'.' hides files
+			adding or removing the dot will make the file (un-)visible
+
+ls -a			list the contents of a directory, including hidden files
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 4		MANUAL PAGES
+
+content			explanation of every command available on your system
+
+man <command>		enters the manual pages for the specifiec command
+
+q			quit
+
+man -k <keyword>	show a list of all man pages containing the specified keyword
+
+/<keyword>		search a keyword inside a man page
+
+n			shows the line containing the next occurence of the keyword inside the man page
+
+short and long options	ls -a		does the same as
+			ls --all	but short options can be placed together as one group after the dash
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 5		FILE MANIPULATION
+
+mkdir [opt] [dir]	create directory; an absolute or relative path can be supplied
+
+-p			--parent; creates the necessary parent directories
+
+-v			--verbose; shows information about the creation process; works for many commands
+
+rmdir [opt] [dir]	directory must be empty; -v and -p work similarly to mkdir
+
+rm -r [opt] [dir]	--recursive; will remove all subdirectories and the files contained within them
+
+touch			create a blank file; if it already exists, nothing will happen
+			it actually modifies the access and modification times on file; this can be detected
+
+cp [opt] [src] [dest]	copy files and directories
+
+-r			copy the whole content of a directory
+
+mv [opt] [src] [dest]	moves a file to a different location
+			can be used to rename a file by copying it into the same folder and renaming it
+			directories do not require the option '-r'
+
+rm  [opt] <file>	no option "-r" required for files or empty directories (which are also just files :)
+
+undo			NO UNDO AVAILABLE FOR THE LINUX COMMAND LINE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 6		VI TEXT EDITOR
+
+
+modes			edit mode	move around the file, perform actions such as deleting, copying, search ...
+			insert mode	input or enter content into the file
+
+vi <file>		specification of the file can again be done with an absolute or a relative path
+			when the file does not exist, it will be created after saving the new input in vi
+
+i			switch to insert mode
+
+Esc			switch to edit mode
+
+ZZ			save and exit
+
+:q!			discard all changes since the last save and exit
+
+:w			save changes but don't exit
+
+:wq			save and exit
+
+<enter>			is required after any command beginning with a colon
+			most commands are executed as soon sa you press a sequence of keys
+
+cat			concatenates file contents together, but
+			in it's most basic form it is useful for viewing files
+			without argument cat will read from stdin (keyboard) and print it back to the screen after Enter
+
+	Ctrl + c		cancel operation
+
+less <file>		move up and down within a file using the arrow keys
+
+	SpaceBar		go forward a page
+
+	b			go back a page
+
+	q			quit this mode
+
+G			move to last line
+
+1G			move to the last line
+
+w			move to the beginning of the next word
+
+b			move to the beginning of the previous word
+
+set nu			enable line numbers
+
+set nonu		disable line numbers
+
+x			delete a single character
+
+dd			delete the current line
+
+u			undo the last action
+
+Ctrl + r		redo the last action
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 7		WILDCARDS
+
+
+wildcards		set of building blocks that allow you to create a patterndefining a set of files or directories
+			bash replaces the pattern with every file or directory that matches it and executes the command
+			the program - e.g. "ls" - never sees the wildcards and does not know we used them
+
+basic set of wildcards	*	zero or more characters
+			?	single character
+			[]	range of characters
+
+examples		ls *.txt	all files with ".txt" at the end
+			ls ?e*		all files with second letter "e"
+			*.???		all files with a three letter extension
+			ls [ag]*	all files starting with "a" or "g"
+			ls [a-g]*	all files starting with a letter between "a" and "g"
+			ls *[1-9]*	all files whose names contain digits
+			ls *[1-9]*	all files whose names don't contain digits
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 8		PERMISSIONS
+
+rights			r	read
+			w	write		vi will warn when trying to write to a read-only file
+			x	execute
+
+persons			owner			ownership can be transferred
+			group
+			others
+
+chmod [perm] [path]	ugoa	user, group, others, all
+			+-	set, unset
+			rwx	read, write,execute
+			e.g. 	chmod g+x	myfile
+				chmod ugo+x	myfile
+				chmod g+rwx	myfile
+				chmod ugo+rwx	myfile
+			e.g. 	chmod 700	myfile
+
+directories		r	right to ls
+			w	right to create files and directories
+			x	right to cd
+
+change permissions	usually only allowed to owner and root used 
+
+root user		allowed to do anything and everything on the system
+			e.g. administrators; "normal" user usually only have access to
+			files and directories in their home directory, maybe some more for sharing and collaborating
+
+scenario		personal web page: others can execute but not read the directory (they won't know what's there)
+			e.g. public_html will be read by the server and displayed
+
+ls -ld			view permissions for a directory
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 9		FILTERS
+
+filters			programs that accept textual data and manipulate it into a form more suited to what we want
+
+head [-num] [path]	prints the first n lines of the file/directory specified in [path]; no number => first 10 lines
+
+tail [-num] [path]	prints the last n lines of the file/directory specified in [path]; no number => last 10 lines
+
+sort [-opt] [path]	sorts depending on the specified sorting mechanism; by default it sorts alphabetically
+
+			-n	numeric sort
+
+nl -[opt] [path]	number lines; does basically just that
+
+			-s	specifies what to print after the number
+
+			-w	specifies the padding to put before the numbers on the left side
+
+wc [-opt] [path]	word count; counts the amount of words, characters and lines
+
+			-c/-w/-l limits to only the amount of characters, words or lines
+
+cut [-opt] [path]	content separated into fields/columns => only certain fields will be chosen
+
+			cut -f 1,2 -d ' ' mysampledata.txt => cuts the first two fields, delimited by blanks
+
+sed <expr> [path]	stream editor; search and replace data as indicated in <expr>
+
+			<expr> e.g. s/search/replace/g
+
+			=> action: substitute/keyword/replacement/not only the first, but all spots in one line: global
+
+			e.g. sed 's/oranges/bananas/g' mysampledata.txt
+
+			single quotes => no interpretation of special characters by the command line => passed literally
+
+uniq [-opt] [path]	remove duplicate lines (only if adjacent)
+
+tac [path]		revers of cat command, prints the last line first, through to the first line
+
+awk			CHECK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+diff			CHECK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 10		GREP AND REGULAR EXPRESSIONS
+
+characters		behave slightly differently in wildcards and regular expressions
+
+grep/egrep		prints every line which contains a set a given pattern
+
+egrep [opt]<ptn>[path]	looks for the pattern <ptn> in the file [path] with some options
+
+			egrep -n 'mellon' mysampledata.txt => all lines which contain "mellon" and their line number
+
+			-c: amount of matched lines
+
+regular expressions	.	single character
+			?	the preceding character matches 0 or 1 times only
+			*	the preceding character matches 0 or more times
+			+	the preceding character matches 1 or more times
+			{n}	the preceding character matches exactly n times
+			{n,m}	the preceding character matches between n and m times (no m: n or more times)
+			[agd]	the character is one of those included within the square brackets
+			[^agd]	the character is not one of those included within the square brackets
+			[c-f]	the character is any character in the range from c to f
+			()	group several characters to behave as one
+			|	pipe symbol - the logical OR operator
+			^	matches the beginning of the line
+			$	matches the end of the line
+
+examples		egrep '[aeiou]{2,}' mysampledata.txt	any line with two or more vowels in a row
+			egrep '2.+' mysampledata.txt		any line with a 2 in it which is not the end of the line
+			egrep '2$' mysampledata.txt		any line with a 2 as last character of the line
+			egrep 'mango|orange' mysampledata.txt	any line which contains either "mango" or "orange"
+			egrep '^A-K' mysampledatata.txt		any line which begins with any letter in the given range
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 11		PIPING AND REDIRECTION
+
+data streams		connected to every command line program automatically
+			stdin	(0)	standard input	data fed into the program
+			stdout	(1)	standard output	data printed by the program	defaults to the terminal
+			stderr	(2)	standard error	error messages			defaults to the terminal
+
+piping & redirection	connect those streams between programs and files to direct data in useful ways
+
+redirection to a file	'>'; wc -w myinput > myoutput; the programs output - normally to stdout - redirected to a file
+
+appending data		'>>'; wc -w myinput >> myoutput
+
+file creation policy	like always, if the specified file to write to does not exist, it will be created automatically
+
+redirection from file	'>'; wc -l > myoutput
+
+formatting		the actual data of the output stays the same, but the formatting might be different in a file
+
+combining redirection	wc -w < myinput > myoutput
+
+redirecting stderr	2 for stderr: <problematic expression> 2> myerror
+
+stdout & stderr		redirect the output to a file first, and then the error to the output using '&'
+			cat <problematic expression> > myoutput 2>&1 (no blank between '>' and '1' !!!)
+
+piping			send data from one program to another
+			remember: all the terminal commands are programs !!!
+			'|' to divide commands
+			ls | head -3
+
+connecting pipes	can be easily connected by just writing them one after the other
+			ls | head -3 | tail -1
+
+position of arguments	remember: all arguments always right next to the program
+
+nice tip		always build your pipes incrementally; this also counts for regular expressions e.g.
+
+pipes and redirection	combining those is no problem at all
+			ls | head -2 | tail -1 >> myoutput
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 12		PROCESS MANAGEMENT
+
+top			real time overview over tasks, RAM, Virtual Memory the most resource intensive processes
+			quit with 'q'
+
+ps			processes; only the processes in the current terminal are shown
+			quit with 'q'
+
+ps aux			shows a complete system view
+
+ps aux | grep <name>	find a certain process, e.g. to kill it
+
+kill [sig] <PID>	kills the respective process
+
+kill -9 <PID>		will use the sledge hammer to kill the process; -1 is the "nicest" option (default?!)
+			only processes that you own can be killed, unless you are the root user
+
+consoles		Linux runs several virtual consoles
+
+Ctrl + Alt + Fx		changes to the console x; the GUI is console 7
+
+tty			TeleTYpewriter; command which prints the filename of the terminal connected to standard input
+			CHECK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+sleep [n]		wait given number of seconds
+
+&			ampersand; tells the terminal to run the program in the background
+			a job number ([n]) is assigned to the process and prompted
+			when the job has finished, hitting enter will show that the job is done
+
+jobs			list currently running background jobs (and shows every job that is done once)
+
+CTRL + z		pause currently running foreground process and move it intoe the background
+			when a job was stopped before being completed, you can bring it back with the 'fg' command
+
+fg <job number>		brings the specified background process back into the foreground
+			when a job was paused with 'Ctrl + z', you can also continue it in the background with 'bg <ID>'
+			to specify a process use the job number that was assigned to it (use command 'jobs')
+
+------------------------------------------------------------------------------------------------------------------------
+
+CHAPTER 13		BASH SCRIPTING
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+QUESTIONS
+
+- where are the shell variables stored?
+- 
