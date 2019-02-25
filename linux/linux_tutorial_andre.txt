@@ -1,5 +1,7 @@
 
-LINUX				stammsie's tips for using the linux os
+TODO				NOTHING :); JUST READ IT, USE IT AND MAYBE EXPAND IT
+
+README				stammsie's random tips for using the linux os
 
 CHECK				ctrl + D / ctrl + C
 CHECK				grep options

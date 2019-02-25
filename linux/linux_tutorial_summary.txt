@@ -1,5 +1,7 @@
- 
-INTRODUCTION		taken from "Ryan's tutorials"
+
+TODO			NOTHING :); JUST READ IT AGAIN AND WORK WITH IT :)
+
+README			summary of a tutorial taken from "Ryan's tutorials"
 
 ------------------------------------------------------------------------------------------------------------------------
 
